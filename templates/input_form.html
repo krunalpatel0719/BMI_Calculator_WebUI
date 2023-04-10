@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <div class="container">
+        <h1>BMI Calculator</h1>
+        <form action="/bmi" method="post">
+            <label for="height">Enter your height in feet and inches (e.g., 5 7 or 5 0):</label>
+            <input type="text" id="height" name="height" required>
+            <label for="weight">Enter your weight in pounds:</label>
+            <input type="number" id="weight" name="weight" step="0.01" required>
+            <button type="submit">Calculate BMI</button>
+        </form>
+    </div>
+</body>
+</html>
