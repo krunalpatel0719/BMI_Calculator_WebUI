@@ -32,8 +32,6 @@ class bmi_class:
             raise ValueError("Weight must be positive")
         elif weight_lb == 0:
             raise ValueError("Weight must be non-zero")
-        
-
         bmi = weight_kg / (height_m ** 2)
         category = self.bmi_category(bmi)
         output = "Your BMI is: {:.2f} and you are {}".format(bmi, category)
@@ -51,8 +49,8 @@ def bmi():
     if request.method == 'POST' and form.validate():
         height = form.height.data
         weight = form.weight.data
-        bmi = bmi_class()
-        result = bmi.calculate_bmi(height, weight)
+        bmi_c = bmi_class()
+        result = bmi_c.calculate_bmi(height, weight)
         return render_template("result.html", result=result)
     return render_template("input_form.html", form=form)
 
