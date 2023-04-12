@@ -11,7 +11,7 @@ jobs:
           command: pip install -r requirements.txt
       - run:
           name: Run tests
-           command: pytest -k "e2e"
+          command: pytest -k "e2e"
       # - run:
       #     name: Run Unit Tests
       #     command: pytest -k "not e2e"
