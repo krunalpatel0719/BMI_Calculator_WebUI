@@ -9,6 +9,13 @@ jobs:
       - run:
           name: Install Python dependencies
           command: pip install -r requirements.txt
+       - run:
+          name: Start the web application
+          command: python app.py
+          background: true
+      - run:
+          name: Wait for the web application to start
+          command: sleep 10
       - run:
           name: Run tests
           command: pytest -k "e2e"
