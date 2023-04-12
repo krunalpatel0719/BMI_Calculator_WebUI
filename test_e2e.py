@@ -8,14 +8,22 @@ from selenium.webdriver.chrome.service import Service
 
 @pytest.fixture(scope="module")
 def browser():
-    service = Service(executable_path='/chrome_driver/chromedriver')
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
     yield driver
     driver.quit()
+# def browser():
+#     service = Service(executable_path='/chrome_driver/chromedriver')
+#     chrome_options = webdriver.ChromeOptions()
+#     chrome_options.add_argument('--headless')
+#     chrome_options.add_argument('--no-sandbox')
+#     chrome_options.add_argument('--disable-dev-shm-usage')
+#     driver = webdriver.Chrome(service=service, options=chrome_options)
+#     yield driver
+#     driver.quit()
 
 def test_bmi_calculation(browser):
     browser.get('http://localhost:5000/bmi')
