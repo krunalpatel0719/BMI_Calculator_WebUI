@@ -4,18 +4,28 @@ jobs:
   build:
     docker:
       - image: cimg/python:3.11.1
+        environment:
+          CHROMEDRIVER_VERSION: "112.0.5615.49"
     steps:
       - checkout
       - run:
           name: Install Dependencies
-          command: pip install -r requirements.txt
+          command: |
+            pip install -r requirements.txt
+            curl -O https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+            unzip chromedriver_linux64.zip
+            sudo mv chromedriver /usr/local/bin/
       - run:
-          name: Run Tests
-          command: pytest
+          name: Run Unit Tests
+          command: pytest -k "not e2e"
+      - run:
+          name: Run End-to-End Tests
+          command: pytest -k "e2e"
 
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
+
 
