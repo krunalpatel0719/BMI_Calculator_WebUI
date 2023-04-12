@@ -16,15 +16,13 @@ jobs:
       - run:
           name: Wait for the web application to start
           command: sleep 10
+    
       - run:
-          name: Run tests
+          name: Run Unit Tests
+          command: pytest -k "not e2e"
+      - run:
+          name: Run End-to-End Tests
           command: pytest -k "e2e"
-      # - run:
-      #     name: Run Unit Tests
-      #     command: pytest -k "not e2e"
-      # - run:
-      #     name: Run End-to-End Tests
-      #     command: pytest -k "e2e"
 
 workflows:
   version: 2
