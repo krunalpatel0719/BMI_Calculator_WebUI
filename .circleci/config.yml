@@ -24,7 +24,8 @@ jobs:
           command: pytest -k "e2e"
       - run:
           name: Run tests with coverage
-          command: pytest --cov=BMI_Calculator_WebUI --cov-report=xml
+          # command: pytest --cov=BMI_Calculator_WebUI --cov-report=xml
+          command: coverage run --source=mypkg -m pytest 
       - run:
           name: Report coverage to Coveralls
           command: coveralls
