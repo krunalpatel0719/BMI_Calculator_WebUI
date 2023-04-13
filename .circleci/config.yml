@@ -16,13 +16,20 @@ jobs:
       - run:
           name: Wait for the web application to start
           command: sleep 10
-    
       - run:
           name: Run Unit Tests
           command: pytest -k "not e2e"
       - run:
           name: Run End-to-End Tests
           command: pytest -k "e2e"
+      - run:
+          name: Run tests with coverage
+          command: pytest --cov=my_project --cov-report=xml
+      - run:
+          name: Report coverage to Coveralls
+          command: coveralls
+          environment:
+            COVERALLS_REPO_TOKEN: ${0Wsh6FDsWXBu45AprVbhaICbDGzJC4kxh}
 
 workflows:
   version: 2

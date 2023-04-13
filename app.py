@@ -43,16 +43,34 @@ class InputForm(Form):
     weight = FloatField(validators=[validators.InputRequired()])
     submit = SubmitField("Calculate BMI")
 
+# @app.route('/bmi', methods=['GET', 'POST'])
+# def bmi():
+#     form = InputForm(request.form)
+#     if request.method == 'POST' and form.validate():
+#         height = form.height.data
+#         weight = form.weight.data
+#         bmi_c = bmi_class()
+#         result = bmi_c.calculate_bmi(height, weight)
+        
+#         return render_template("result.html", result=result)
+        
+        
+#     return render_template("input_form.html", form=form)
 @app.route('/bmi', methods=['GET', 'POST'])
 def bmi():
     form = InputForm(request.form)
+    error = None
     if request.method == 'POST' and form.validate():
         height = form.height.data
         weight = form.weight.data
         bmi_c = bmi_class()
-        result = bmi_c.calculate_bmi(height, weight)
-        return render_template("result.html", result=result)
-    return render_template("input_form.html", form=form)
+        try:
+            result = bmi_c.calculate_bmi(height, weight)
+            return render_template("result.html", result=result)
+        except ValueError as e:
+            error = str(e)
 
+    return render_template("input_form.html", form=form, error=error)
+    
 if __name__ == "__main__":
     app.run(debug=True)
