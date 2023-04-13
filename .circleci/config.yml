@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Run tests with coverage
           # command: pytest --cov=BMI_Calculator_WebUI --cov-report=xml
-          command: coverage run --source=mypkg -m pytest 
+          command: pytest --cov
       - run:
           name: Report coverage to Coveralls
           command: coveralls
