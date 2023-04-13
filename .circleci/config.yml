@@ -24,12 +24,12 @@ jobs:
           command: pytest -k "e2e"
       - run:
           name: Run tests with coverage
-          command: pytest --cov=my_project --cov-report=xml
+          command: pytest --cov=BMI_Calculator_WebUI --cov-report=xml
       - run:
           name: Report coverage to Coveralls
           command: coveralls
           environment:
-            COVERALLS_REPO_TOKEN: ${0Wsh6FDsWXBu45AprVbhaICbDGzJC4kxh}
+            COVERALLS_REPO_TOKEN: ${COVERALLS_REPO_TOKEN}
 
 workflows:
   version: 2
